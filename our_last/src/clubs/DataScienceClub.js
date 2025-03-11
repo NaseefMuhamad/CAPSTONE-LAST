@@ -3,7 +3,7 @@ import JoinForm from "../components/JoinForm";
 import dataScienceBanner from "../assets/datascience-banner.jpg";
 import dataViz from "../assets/data-visualization.jpg";
 import mlModel from "../assets/ml-model.jpg";
-import bigData from "../assets/big-data.jpg";
+import bigData from "../assets/big-data.webp";
 
 function DataScienceClub() {
   const [tip, setTip] = useState("");

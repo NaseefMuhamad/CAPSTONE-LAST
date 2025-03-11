@@ -5,7 +5,7 @@ function JoinForm({ clubName }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(Request to join ${clubName} sent with email: ${email});
+    alert(`Request to join ${clubName} sent with email: ${email}`);
     setEmail('');
   };
 
