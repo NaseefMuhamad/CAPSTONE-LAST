@@ -1,10 +1,10 @@
-"use client"; // Required in Next.js 13+ for client-side components
+
 
 import React, { useState, useEffect } from "react";
 import "./globals.css";
 
 export default function CyberSecurityPage() {
-  // State variables
+  
   const [tip, setTip] = useState("");
   const [quizResult, setQuizResult] = useState("");
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -12,7 +12,7 @@ export default function CyberSecurityPage() {
   const [score, setScore] = useState(0);
   const [leaderboard, setLeaderboard] = useState([]);
 
-  // Cyber Security Threats
+  
   const threats = [
     "Phishing Attacks",
     "Malware & Ransomware",
