@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import JoinForm from "../components/JoinForm";
+import clubLogo from "../assets/assets/logo(1)..jpg";
+import cyberThreatsImage from "../assets/threats.jpg";
+import tipsImage from "../assets/tips.jpg";
+import quizImage from "../assets/quiz.jpg";
 
 function CybersecurityClub() {
   // State variables
@@ -81,12 +85,13 @@ function CybersecurityClub() {
   };
 
   return (
-    <div style={{ ...styles.container, backgroundColor: darkMode ? "#121212" : "#f5f5f5", color: darkMode ? "white" : "black" }}>
-      <header style={styles.header}>
-        Cyber Security Awareness
-        <div style={styles.clock}>{time}</div>
-        <button style={styles.toggleButton} onClick={toggleDarkMode}>
-          {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+    <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
+      <header className="club-header">
+        <img src={clubLogo} alt="Cybersecurity Club Logo" className="club-logo" />
+        <h1>Cybersecurity Club</h1>
+        <div className="club-clock">{time}</div>
+        <button className="btn toggle-btn" onClick={toggleDarkMode}>
+          {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
         </button>
       </header>
 
@@ -108,6 +113,7 @@ function CybersecurityClub() {
 
       <section className="club-section">
         <h2>Common Cyber Threats</h2>
+        <img src={cyberThreatsImage} alt="Cyber Threats" className="club-image" />
         <ul>
           {threats.map((threat, index) => (
             <li key={index}>{threat}</li>
@@ -117,6 +123,7 @@ function CybersecurityClub() {
 
       <section className="club-section">
         <h2>Cyber Security Tips</h2>
+        <img src={tipsImage} alt="Cybersecurity Tips" className="club-image" />
         <p>Click the button below to get a random cyber security tip!</p>
         <button className="btn" onClick={showTip}>
           Get a Tip
@@ -126,6 +133,7 @@ function CybersecurityClub() {
 
       <section className="club-section">
         <h2>Cyber Security Quiz</h2>
+        <img src={quizImage} alt="Cybersecurity Quiz" className="club-image" />
         <p>
           <strong>Question:</strong> What is the best way to protect your
           password?
@@ -171,3 +179,5 @@ function CybersecurityClub() {
     </div>
   );
 }
+
+export default CybersecurityClub;
