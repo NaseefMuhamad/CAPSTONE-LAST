@@ -1,10 +1,9 @@
-"use client"; // Required in Next.js 13+ for client-side components
 
 import React, { useState, useEffect } from "react";
-import "./globals.css";
+import JoinForm from "../components/JoinForm";
 
 export default function CyberSecurityPage() {
-  // State variables
+  
   const [tip, setTip] = useState("");
   const [quizResult, setQuizResult] = useState("");
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -12,7 +11,7 @@ export default function CyberSecurityPage() {
   const [score, setScore] = useState(0);
   const [leaderboard, setLeaderboard] = useState([]);
 
-  // Cyber Security Threats
+  
   const threats = [
     "Phishing Attacks",
     "Malware & Ransomware",
@@ -21,7 +20,7 @@ export default function CyberSecurityPage() {
     "Weak Password Attacks"
   ];
 
-  // Cyber Security Tips
+  
   const tips = [
     "Use strong and unique passwords.",
     "Enable two-factor authentication (2FA).",
@@ -31,38 +30,38 @@ export default function CyberSecurityPage() {
     "Back up your data frequently."
   ];
 
-  // Function to get a random cyber security tip
+  
   const showTip = () => {
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
     setTip(randomTip);
   };
 
-  // Function to check quiz answer
+  
   const checkAnswer = (answer) => {
     if (answer === "c") {
       setQuizResult("✅ Correct! Always use a strong, unique password.");
-      setScore(score + 10); // Increase score
+      setScore(score + 10); 
       updateLeaderboard(score + 10);
     } else {
       setQuizResult("❌ Incorrect. Try again!");
     }
   };
 
-  // Update leaderboard in local storage
+  
   const updateLeaderboard = (newScore) => {
     const newLeaderboard = [...leaderboard, { score: newScore, date: new Date().toLocaleString() }];
     newLeaderboard.sort((a, b) => b.score - a.score);
-    setLeaderboard(newLeaderboard.slice(0, 5)); // Keep top 5 scores
+    setLeaderboard(newLeaderboard.slice(0, 5)); 
     localStorage.setItem("leaderboard", JSON.stringify(newLeaderboard.slice(0, 5)));
   };
 
-  // Load leaderboard from local storage on mount
+  
   useEffect(() => {
     const savedLeaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
     setLeaderboard(savedLeaderboard);
   }, []);
 
-  // Real-time clock effect
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
@@ -70,7 +69,7 @@ export default function CyberSecurityPage() {
     return () => clearInterval(interval);
   }, []);
 
-  // Toggle Dark/Light Mode
+  
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
