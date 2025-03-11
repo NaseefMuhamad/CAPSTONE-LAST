@@ -97,7 +97,7 @@ function CybersecurityClub() {
           threats such as hacking, phishing, and malware attacks.
         </p>
         <h3>Club President</h3>
-        <p>Eve Brown</p>
+        <p>Jona Kasule</p>
         <h3>Participants</h3>
         <ul>
           <li>Frank Miller</li>

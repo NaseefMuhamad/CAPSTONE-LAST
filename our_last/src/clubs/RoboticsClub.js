@@ -1,8 +1,12 @@
+// src/clubs/RoboticsClub.js
 import React, { useState, useEffect } from "react";
 import JoinForm from "../components/JoinForm";
+import roboticsBanner from "../assets/robotics-banner.jpeg";
+import robotArm from "../assets/robot-arm.webp";
+import drone from "../assets/drone.jpg";
+import sensorBot from "../assets/sensor-bot.webp";
 
 function RoboticsClub() {
-  
   const [tip, setTip] = useState("");
   const [quizResult, setQuizResult] = useState("");
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -10,15 +14,12 @@ function RoboticsClub() {
   const [score, setScore] = useState(0);
   const [leaderboard, setLeaderboard] = useState([]);
 
-  
   const projects = [
-    "Line-Following Robot",
-    "Obstacle-Avoiding Drone",
-    "Robotic Arm for Assembly",
-    "Autonomous Rover for Exploration",
+    { name: "Robotic Arm Controller", image: robotArm },
+    { name: "Autonomous Drone", image: drone },
+    { name: "Sensor-Based Navigation Bot", image: sensorBot },
   ];
 
-  
   const tips = [
     "Double-check your wiring before powering on.",
     "Calibrate sensors for accurate readings.",
@@ -27,45 +28,40 @@ function RoboticsClub() {
     "Keep spare parts handy during competitions.",
   ];
 
-  
   const showTip = () => {
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
     setTip(randomTip);
   };
 
-  
   const checkAnswer = (answer) => {
     if (answer === "b") {
       setQuizResult("✅ Correct! Sensors are essential for autonomy.");
-      setScore((prevScore) => prevScore + 10); 
+      setScore((prevScore) => prevScore + 10);
       updateLeaderboard(score + 10);
     } else {
       setQuizResult("❌ Incorrect. Try again!");
     }
   };
 
-  
   const updateLeaderboard = (newScore) => {
     const newLeaderboard = [
       ...leaderboard,
       { score: newScore, date: new Date().toLocaleString() },
     ];
     newLeaderboard.sort((a, b) => b.score - a.score);
-    setLeaderboard(newLeaderboard.slice(0, 5)); 
+    setLeaderboard(newLeaderboard.slice(0, 5));
     localStorage.setItem(
       "roboticsLeaderboard",
       JSON.stringify(newLeaderboard.slice(0, 5))
     );
   };
 
-  
   useEffect(() => {
     const savedLeaderboard =
       JSON.parse(localStorage.getItem("roboticsLeaderboard")) || [];
     setLeaderboard(savedLeaderboard);
   }, []);
 
-  
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
@@ -73,7 +69,6 @@ function RoboticsClub() {
     return () => clearInterval(interval);
   }, []);
 
-  
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -81,6 +76,7 @@ function RoboticsClub() {
   return (
     <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
       <header className="club-header">
+        <img src={roboticsBanner} alt="Robotics Club Banner" className="club-banner" />
         <h1>Robotics Club</h1>
         <div className="club-clock">{time}</div>
         <button className="btn toggle-btn" onClick={toggleDarkMode}>
@@ -97,7 +93,7 @@ function RoboticsClub() {
           projects and teamwork!
         </p>
         <h3>Club President</h3>
-        <p>Ivy Taylor</p>
+        <p>Naseef Muhamad</p>
         <h3>Participants</h3>
         <ul>
           <li>Jack White</li>
@@ -111,11 +107,14 @@ function RoboticsClub() {
       <section className="club-section">
         <h2>Featured Projects</h2>
         <p>Check out some of our recent creations:</p>
-        <ul>
+        <div className="project-gallery">
           {projects.map((project, index) => (
-            <li key={index}>{project}</li>
+            <div key={index} className="project-item">
+              <img src={project.image} alt={project.name} className="project-image" />
+              <p>{project.name}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       </section>
 
       <section className="club-section">

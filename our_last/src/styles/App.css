@@ -88,7 +88,6 @@ body {
   color: #fff;
 }
 
-/* Hamburger Menu (for mobile) */
 .nav-toggle {
   display: none;
   font-size: 1.8rem;
@@ -358,11 +357,21 @@ body {
 
 .club-banner {
   width: 100%;
-  max-height: 300px;
+  max-height: 350px;
   object-fit: cover;
-  border-radius: 15px;
-  margin-bottom: 25px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-radius: 20px;
+  margin-bottom: 30px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.club-banner:hover {
+  transform: scale(1.02);
+  opacity: 0.95;
+}
+
+.dark-mode .club-banner {
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
 }
 
 /* Animations */
@@ -448,34 +457,41 @@ body {
 
 .project-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  margin-top: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  margin-top: 25px;
 }
 
 .project-item {
   text-align: center;
   background: #fff;
-  padding: 15px;
-  border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .project-item:hover {
   transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
 .dark-mode .project-item {
   background: #2f3640;
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.1);
 }
 
 .project-image {
   width: 100%;
-  height: 160px;
+  height: 180px;
   object-fit: cover;
-  border-radius: 8px;
-  border: 2px solid #dfe4ea;
+  border-radius: 10px;
+  border: 3px solid #dfe4ea;
+  transition: transform 0.3s ease;
+}
+
+.project-image:hover {
+  transform: scale(1.03);
 }
 
 .dark-mode .project-image {
@@ -483,9 +499,14 @@ body {
 }
 
 .project-item p {
-  margin: 10px 0 0;
-  font-size: 1.1rem;
+  margin: 15px 0 0;
+  font-size: 1.2rem;
   font-weight: 500;
+  color: #2c3e50;
+}
+
+.dark-mode .project-item p {
+  color: #dcdcdc;
 }
 
 .tip-text {
@@ -660,7 +681,7 @@ body {
   }
 
   .club-banner {
-    max-height: 200px;
+    max-height: 250px;
   }
 
   .club-section {
@@ -673,10 +694,15 @@ body {
 
   .project-gallery {
     grid-template-columns: 1fr;
+    gap: 20px;
   }
 
   .project-image {
-    height: 140px;
+    height: 150px;
+  }
+
+  .project-item {
+    padding: 15px;
   }
 
   .quiz-buttons {
@@ -738,12 +764,24 @@ body {
     font-size: 1.8rem;
   }
 
+  .club-banner {
+    max-height: 200px;
+  }
+
   .club-section {
     padding: 15px;
   }
 
   .club-section h2 {
     font-size: 1.5rem;
+  }
+
+  .project-image {
+    height: 120px;
+  }
+
+  .project-item p {
+    font-size: 1rem;
   }
 
   .join-form {

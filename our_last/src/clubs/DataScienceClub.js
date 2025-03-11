@@ -100,7 +100,7 @@ function DataScienceClub() {
           data enthusiasts!
         </p>
         <h3>Club President</h3>
-        <p>Alice Smith</p>
+        <p>Jada Francis</p>
         <h3>Participants</h3>
         <ul>
           <li>Bob Johnson</li>
