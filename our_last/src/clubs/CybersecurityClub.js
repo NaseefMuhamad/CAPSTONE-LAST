@@ -81,12 +81,12 @@ function CybersecurityClub() {
   };
 
   return (
-    <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
-      <header className="club-header">
-        <h1>Cybersecurity Club</h1>
-        <div className="club-clock">{time}</div>
-        <button className="btn toggle-btn" onClick={toggleDarkMode}>
-          {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
+    <div style={{ ...styles.container, backgroundColor: darkMode ? "#121212" : "#f5f5f5", color: darkMode ? "white" : "black" }}>
+      <header style={styles.header}>
+        Cyber Security Awareness
+        <div style={styles.clock}>{time}</div>
+        <button style={styles.toggleButton} onClick={toggleDarkMode}>
+          {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
         </button>
       </header>
 
@@ -171,5 +171,3 @@ function CybersecurityClub() {
     </div>
   );
 }
-
-export default CybersecurityClub;
