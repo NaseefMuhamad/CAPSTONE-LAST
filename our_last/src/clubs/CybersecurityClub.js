@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import JoinForm from "../components/JoinForm"; // Import JoinForm from components
+import JoinForm from "../components/JoinForm";
 
 function CybersecurityClub() {
   // State variables
@@ -39,7 +39,7 @@ function CybersecurityClub() {
   const checkAnswer = (answer) => {
     if (answer === "c") {
       setQuizResult("✅ Correct! Always use a strong, unique password.");
-      setScore((prevScore) => prevScore + 10); // Increase score
+      setScore((prevScore) => prevScore + 10);
       updateLeaderboard(score + 10);
     } else {
       setQuizResult("❌ Incorrect. Try again!");
@@ -53,7 +53,7 @@ function CybersecurityClub() {
       { score: newScore, date: new Date().toLocaleString() },
     ];
     newLeaderboard.sort((a, b) => b.score - a.score);
-    setLeaderboard(newLeaderboard.slice(0, 5)); // Keep top 5 scores
+    setLeaderboard(newLeaderboard.slice(0, 5));
     localStorage.setItem(
       "cybersecurityLeaderboard",
       JSON.stringify(newLeaderboard.slice(0, 5))
@@ -118,7 +118,9 @@ function CybersecurityClub() {
       <section className="club-section">
         <h2>Cyber Security Tips</h2>
         <p>Click the button below to get a random cyber security tip!</p>
-        <button className="btn" onClick={showTip}>Get a Tip</button>
+        <button className="btn" onClick={showTip}>
+          Get a Tip
+        </button>
         <p className="tip-text">{tip}</p>
       </section>
 
