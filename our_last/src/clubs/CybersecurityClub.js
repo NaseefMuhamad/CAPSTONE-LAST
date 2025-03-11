@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import JoinForm from "../components/JoinForm";
-import clubLogo from "../assets/assets/logo.jpg";
+import clubLogo from "../assets/logo.jpg";
 import cyberThreatsImage from "../assets/threats.jpg";
 import tipsImage from "../assets/tips.jpg";
 import quizImage from "../assets/quiz.jpg";
