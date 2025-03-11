@@ -1,9 +1,7 @@
-"use client"; // Required in Next.js 13+ for client-side components
-
 import React, { useState, useEffect } from "react";
-import "./globals.css";
+import JoinForm from "../components/JoinForm"; // Import JoinForm from components
 
-export default function CyberSecurityPage() {
+function CybersecurityClub() {
   // State variables
   const [tip, setTip] = useState("");
   const [quizResult, setQuizResult] = useState("");
@@ -18,7 +16,7 @@ export default function CyberSecurityPage() {
     "Malware & Ransomware",
     "Denial of Service (DoS) Attacks",
     "Man-in-the-Middle (MITM) Attacks",
-    "Weak Password Attacks"
+    "Weak Password Attacks",
   ];
 
   // Cyber Security Tips
@@ -28,7 +26,7 @@ export default function CyberSecurityPage() {
     "Do not click on suspicious links.",
     "Keep your software and antivirus updated.",
     "Use a VPN on public Wi-Fi.",
-    "Back up your data frequently."
+    "Back up your data frequently.",
   ];
 
   // Function to get a random cyber security tip
@@ -41,7 +39,7 @@ export default function CyberSecurityPage() {
   const checkAnswer = (answer) => {
     if (answer === "c") {
       setQuizResult("✅ Correct! Always use a strong, unique password.");
-      setScore(score + 10); // Increase score
+      setScore((prevScore) => prevScore + 10); // Increase score
       updateLeaderboard(score + 10);
     } else {
       setQuizResult("❌ Incorrect. Try again!");
@@ -50,15 +48,22 @@ export default function CyberSecurityPage() {
 
   // Update leaderboard in local storage
   const updateLeaderboard = (newScore) => {
-    const newLeaderboard = [...leaderboard, { score: newScore, date: new Date().toLocaleString() }];
+    const newLeaderboard = [
+      ...leaderboard,
+      { score: newScore, date: new Date().toLocaleString() },
+    ];
     newLeaderboard.sort((a, b) => b.score - a.score);
     setLeaderboard(newLeaderboard.slice(0, 5)); // Keep top 5 scores
-    localStorage.setItem("leaderboard", JSON.stringify(newLeaderboard.slice(0, 5)));
+    localStorage.setItem(
+      "cybersecurityLeaderboard",
+      JSON.stringify(newLeaderboard.slice(0, 5))
+    );
   };
 
   // Load leaderboard from local storage on mount
   useEffect(() => {
-    const savedLeaderboard = JSON.parse(localStorage.getItem("leaderboard")) || [];
+    const savedLeaderboard =
+      JSON.parse(localStorage.getItem("cybersecurityLeaderboard")) || [];
     setLeaderboard(savedLeaderboard);
   }, []);
 
@@ -76,21 +81,32 @@ export default function CyberSecurityPage() {
   };
 
   return (
-    <div style={{ ...styles.container, backgroundColor: darkMode ? "#121212" : "#f5f5f5", color: darkMode ? "white" : "black" }}>
-      <header style={styles.header}>
-        Cyber Security Awareness
-        <div style={styles.clock}>{time}</div>
-        <button style={styles.toggleButton} onClick={toggleDarkMode}>
-          {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
+    <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
+      <header className="club-header">
+        <h1>Cybersecurity Club</h1>
+        <div className="club-clock">{time}</div>
+        <button className="btn toggle-btn" onClick={toggleDarkMode}>
+          {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
         </button>
       </header>
 
-      <section style={styles.card}>
+      <section className="club-section">
         <h2>What is Cyber Security?</h2>
-        <p>Cyber security protects systems, networks, and data from cyber threats such as hacking, phishing, and malware attacks.</p>
+        <p>
+          Cyber security protects systems, networks, and data from cyber
+          threats such as hacking, phishing, and malware attacks.
+        </p>
+        <h3>Club President</h3>
+        <p>Eve Brown</p>
+        <h3>Participants</h3>
+        <ul>
+          <li>Frank Miller</li>
+          <li>Grace Chen</li>
+          <li>Henry Davis</li>
+        </ul>
       </section>
 
-      <section style={styles.card}>
+      <section className="club-section">
         <h2>Common Cyber Threats</h2>
         <ul>
           {threats.map((threat, index) => (
@@ -99,37 +115,59 @@ export default function CyberSecurityPage() {
         </ul>
       </section>
 
-      <section style={styles.card}>
+      <section className="club-section">
         <h2>Cyber Security Tips</h2>
         <p>Click the button below to get a random cyber security tip!</p>
-        <button style={styles.button} onClick={showTip}>Get a Tip</button>
-        <p style={{ fontWeight: "bold", marginTop: "10px" }}>{tip}</p>
+        <button className="btn" onClick={showTip}>Get a Tip</button>
+        <p className="tip-text">{tip}</p>
       </section>
 
-      <section style={styles.card}>
+      <section className="club-section">
         <h2>Cyber Security Quiz</h2>
-        <p><strong>Question:</strong> What is the best way to protect your password?</p>
-        <button style={styles.button} onClick={() => checkAnswer("a")}>A. Use the same password everywhere</button>
-        <button style={styles.button} onClick={() => checkAnswer("b")}>B. Share it with a friend</button>
-        <button style={styles.button} onClick={() => checkAnswer("c")}>C. Use a unique and strong password</button>
-        <p style={{ fontWeight: "bold", marginTop: "10px", color: quizResult.includes("Correct") ? "green" : "red" }}>
+        <p>
+          <strong>Question:</strong> What is the best way to protect your
+          password?
+        </p>
+        <div className="quiz-buttons">
+          <button className="btn" onClick={() => checkAnswer("a")}>
+            A. Use the same password everywhere
+          </button>
+          <button className="btn" onClick={() => checkAnswer("b")}>
+            B. Share it with a friend
+          </button>
+          <button className="btn" onClick={() => checkAnswer("c")}>
+            C. Use a unique and strong password
+          </button>
+        </div>
+        <p
+          className="quiz-result"
+          style={{ color: quizResult.includes("Correct") ? "green" : "red" }}
+        >
           {quizResult}
         </p>
       </section>
 
-      <section style={styles.card}>
+      <section className="club-section">
         <h2>Leaderboard 🏆</h2>
-        <p>Your Score: <strong>{score}</strong></p>
+        <p>
+          Your Score: <strong>{score}</strong>
+        </p>
         <ol>
           {leaderboard.map((entry, index) => (
-            <li key={index}>{entry.score} points - {entry.date}</li>
+            <li key={index}>
+              {entry.score} points - {entry.date}
+            </li>
           ))}
         </ol>
       </section>
 
-      <footer style={styles.footer}>
-        <p>© 2025 Cyber Security Awareness. All rights reserved.</p>
+      <JoinForm clubName="cybersecurity" />
+
+      <footer className="club-footer">
+        <p>© 2025 Cybersecurity Club. All rights reserved.</p>
       </footer>
     </div>
   );
 }
+
+export default CybersecurityClub;
