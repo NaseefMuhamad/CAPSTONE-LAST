@@ -1,13 +1,11 @@
 import React, { useState, useEffect } from "react";
 import JoinForm from "../components/JoinForm";
-// Import images from assets (adjust names as needed)
 import dataScienceBanner from "../assets/datascience-banner.jpg";
 import dataViz from "../assets/data-visualization.jpg";
 import mlModel from "../assets/ml-model.jpg";
 import bigData from "../assets/big-data.jpg";
 
 function DataScienceClub() {
-  // State variables
   const [tip, setTip] = useState("");
   const [quizResult, setQuizResult] = useState("");
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -15,14 +13,14 @@ function DataScienceClub() {
   const [score, setScore] = useState(0);
   const [leaderboard, setLeaderboard] = useState([]);
 
-  // Data Science Projects with images
+  
   const projects = [
     { name: "Interactive Data Visualization Dashboard", image: dataViz },
     { name: "Machine Learning Prediction Model", image: mlModel },
     { name: "Big Data Analysis Pipeline", image: bigData },
   ];
 
-  // Data Science Tips
+  
   const tips = [
     "Clean your data before analysis.",
     "Use version control for your code.",
@@ -48,7 +46,7 @@ function DataScienceClub() {
     }
   };
 
-  // Update leaderboard in local storage
+  
   const updateLeaderboard = (newScore) => {
     const newLeaderboard = [
       ...leaderboard,
@@ -62,7 +60,7 @@ function DataScienceClub() {
     );
   };
 
-  // Load leaderboard from local storage on mount
+
   useEffect(() => {
     const savedLeaderboard =
       JSON.parse(localStorage.getItem("dataScienceLeaderboard")) || [];
@@ -83,13 +81,13 @@ function DataScienceClub() {
   };
 
   return (
-    <div className={club-page ${darkMode ? "dark-mode" : "light-mode"}}>
+    <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
       <header className="club-header">
         <img src={dataScienceBanner} alt="Data Science Club Banner" className="club-banner" />
         <h1>Data Science Club</h1>
         <div className="club-clock">{time}</div>
         <button className="btn toggle-btn" onClick={toggleDarkMode}>
-          {darkMode ? "☀ Light Mode" : "🌙 Dark Mode"}
+          {darkMode ? "☀️ Light Mode" : "🌙 Dark Mode"}
         </button>
       </header>
 
@@ -180,3 +178,6 @@ function DataScienceClub() {
       </footer>
     </div>
   );
+}
+
+export default DataScienceClub;
