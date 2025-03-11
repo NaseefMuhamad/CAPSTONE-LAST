@@ -34,58 +34,85 @@ body {
   color: #333;
 }
 
-/* Welcome Page */
-/* src/styles/App.css */
-
-/* Import a custom font */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
-
-/* Reset and General Styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* Navbar */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: linear-gradient(45deg, #2c3e50, #3498db);
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border-radius: 0 0 15px 15px;
+  animation: slideDown 0.5s ease-out;
 }
 
-body {
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.6;
-  color: #333;
-  background-color: #f4f7fa;
+.dark-mode .navbar {
+  background: linear-gradient(45deg, #1e272e, #6c5ce7);
 }
 
-.App {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 30px;
+.navbar-brand {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
 }
 
-/* Dark and Light Mode */
-.dark-mode {
-  background: linear-gradient(135deg, #1e272e, #2f3640);
-  color: #dcdcdc;
+.nav-links {
+  display: flex;
+  gap: 25px;
 }
 
-.light-mode {
-  background: linear-gradient(135deg, #f4f7fa, #dfe4ea);
-  color: #333;
+.nav-link {
+  color: #f0f0f0;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 8px 15px;
+  border-radius: 10px;
+  transition: background 0.3s ease, transform 0.3s ease, color 0.3s ease;
+}
+
+.nav-link:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+.nav-link.active {
+  background: linear-gradient(45deg, #ff6b6b, #ff9f43);
+  color: #fff;
+}
+
+/* Hamburger Menu (for mobile) */
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  color: #fff;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 /* Welcome Page */
 .welcome-container {
-  text-align: center;
-  padding: 100px 30px;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ff9ff3, #54a0ff, #00d2d3);
+  justify-content: center;
+  min-height: 80vh;
+  text-align: center;
+  background: linear-gradient(135deg, #ff7675, #74b9ff, #55efc4);
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 60px 40px;
   position: relative;
   overflow: hidden;
-  border-radius: 0 0 70px 70px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-  animation: gradientShift 15s ease infinite;
+  animation: fadeIn 1.5s ease-in-out;
 }
 
 .dark-mode .welcome-container {
@@ -99,19 +126,19 @@ body {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.15), transparent);
-  animation: rotate 25s linear infinite;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent);
+  animation: rotate 20s linear infinite;
   pointer-events: none;
 }
 
 .welcome-container h1 {
-  font-size: 4rem;
+  font-size: 3.8rem;
+  margin-bottom: 25px;
   color: #fff;
-  margin-bottom: 30px;
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: 3px;
   font-weight: 700;
-  text-shadow: 4px 4px 12px rgba(0, 0, 0, 0.4);
+  text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
   position: relative;
   z-index: 1;
   animation: bounceIn 1.2s ease-out;
@@ -119,65 +146,40 @@ body {
 
 .dark-mode .welcome-container h1 {
   color: #f0f0f0;
-  text-shadow: 4px 4px 12px rgba(255, 255, 255, 0.2);
+  text-shadow: 3px 3px 10px rgba(255, 255, 255, 0.2);
 }
 
 .welcome-container p {
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: #f0f0f0;
-  margin-bottom: 50px;
-  font-weight: 400;
-  max-width: 800px;
+  margin-bottom: 40px;
+  max-width: 700px;
   position: relative;
   z-index: 1;
   animation: fadeInUp 1.5s ease-out;
 }
 
-.btn {
-  display: inline-block;
-  padding: 18px 40px;
-  background: linear-gradient(45deg, #ff9f43, #ee5253);
+.enter-btn {
+  padding: 15px 40px;
+  background: linear-gradient(45deg, #ff6b6b, #ff9f43);
   color: white;
-  text-decoration: none;
-  border-radius: 30px;
-  font-weight: 600;
+  border: none;
+  border-radius: 25px;
   font-size: 1.3rem;
-  transition: transform 0.4s, box-shadow 0.4s, background 0.4s;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
   position: relative;
   z-index: 1;
 }
 
-.btn:hover {
-  background: linear-gradient(45deg, #ee5253, #ff9f43);
-  transform: translateY(-8px) scale(1.05);
-  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.35);
+.enter-btn:hover {
+  background: linear-gradient(45deg, #ff9f43, #ff6b6b);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
-/* Animations */
-@keyframes gradientShift {
-  0% { background-position: 0% 0%; }
-  50% { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-@keyframes bounceIn {
-  0% { transform: scale(0.3); opacity: 0; }
-  50% { transform: scale(1.05); opacity: 1; }
-  100% { transform: scale(1); }
-}
-
-@keyframes fadeInUp {
-  from { transform: translateY(20px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-@keyframes rotate {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-/* [Rest of the file remains as provided in my last response, e.g., Dashboard, Club Pages, etc.] */
 /* Dashboard Page */
 .dashboard-container {
   padding: 60px 30px;
@@ -379,7 +381,23 @@ body {
   to { transform: rotate(360deg); }
 }
 
-/* Rest of the styles (unchanged but enhanced) */
+@keyframes bounceIn {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+@keyframes fadeInUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideDown {
+  from { transform: translateY(-100%); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+/* Rest of the styles */
 .club-section {
   margin: 30px 0;
   padding: 25px;
@@ -564,12 +582,42 @@ body {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    padding: 15px 20px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+    margin-top: 15px;
+  }
+
+  .nav-links.active {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+
   .welcome-container {
-    padding: 60px 15px;
+    padding: 40px 20px;
   }
 
   .welcome-container h1 {
     font-size: 2.5rem;
+  }
+
+  .welcome-container p {
+    font-size: 1.2rem;
+  }
+
+  .enter-btn {
+    padding: 12px 30px;
+    font-size: 1.2rem;
   }
 
   .dashboard-container {
@@ -642,12 +690,34 @@ body {
 }
 
 @media (max-width: 480px) {
+  .navbar {
+    padding: 10px 15px;
+  }
+
+  .navbar-brand {
+    font-size: 1.5rem;
+  }
+
+  .nav-link {
+    font-size: 1rem;
+    padding: 6px 12px;
+  }
+
   .welcome-container {
-    padding: 40px 10px;
+    padding: 30px 15px;
   }
 
   .welcome-container h1 {
     font-size: 2rem;
+  }
+
+  .welcome-container p {
+    font-size: 1rem;
+  }
+
+  .enter-btn {
+    padding: 10px 25px;
+    font-size: 1rem;
   }
 
   .dashboard-container {
