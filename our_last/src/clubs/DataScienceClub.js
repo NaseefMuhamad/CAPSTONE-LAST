@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import JoinForm from "../components/JoinForm";
-import dataScienceBanner from "../assets/datascience-banner.jpg";
+
 import dataViz from "../assets/data-visualization.jpg";
 import mlModel from "../assets/ml-model.jpg";
 import bigData from "../assets/big-data.webp";
@@ -83,7 +83,7 @@ function DataScienceClub() {
   return (
     <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
       <header className="club-header">
-        <img src={dataScienceBanner} alt="Data Science Club Banner" className="club-banner" />
+        
         <h1>Data Science Club</h1>
         <div className="club-clock">{time}</div>
         <button className="btn toggle-btn" onClick={toggleDarkMode}>

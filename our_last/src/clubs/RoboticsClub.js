@@ -1,7 +1,7 @@
 // src/clubs/RoboticsClub.js
 import React, { useState, useEffect } from "react";
 import JoinForm from "../components/JoinForm";
-import roboticsBanner from "../assets/robotics-banner.jpeg";
+
 import robotArm from "../assets/robot-arm.webp";
 import drone from "../assets/drone.jpg";
 import sensorBot from "../assets/sensor-bot.webp";
@@ -47,36 +47,27 @@ function RoboticsClub() {
     const newLeaderboard = [
       ...leaderboard,
       { score: newScore, date: new Date().toLocaleString() },
-    ];
-    newLeaderboard.sort((a, b) => b.score - a.score);
-    setLeaderboard(newLeaderboard.slice(0, 5));
-    localStorage.setItem(
-      "roboticsLeaderboard",
-      JSON.stringify(newLeaderboard.slice(0, 5))
-    );
+    ].sort((a, b) => b.score - a.score).slice(0, 5);
+    setLeaderboard(newLeaderboard);
+    localStorage.setItem("roboticsLeaderboard", JSON.stringify(newLeaderboard));
   };
 
   useEffect(() => {
-    const savedLeaderboard =
-      JSON.parse(localStorage.getItem("roboticsLeaderboard")) || [];
+    const savedLeaderboard = JSON.parse(localStorage.getItem("roboticsLeaderboard")) || [];
     setLeaderboard(savedLeaderboard);
   }, []);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
-    }, 1000);
+    const interval = setInterval(() => setTime(new Date().toLocaleTimeString()), 1000);
     return () => clearInterval(interval);
   }, []);
 
-  const toggleDarkMode = () => {
-    setDarkMode(!darkMode);
-  };
+  const toggleDarkMode = () => setDarkMode(!darkMode);
 
   return (
     <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
       <header className="club-header">
-        <img src={roboticsBanner} alt="Robotics Club Banner" className="club-banner" />
+        
         <h1>Robotics Club</h1>
         <div className="club-clock">{time}</div>
         <button className="btn toggle-btn" onClick={toggleDarkMode}>
@@ -88,9 +79,7 @@ function RoboticsClub() {
         <h2>About Robotics Club</h2>
         <p>
           The Robotics Club is dedicated to designing, building, and programming
-          robots for competitions and real-world applications. Whether you're a
-          beginner or an expert, join us to explore robotics through hands-on
-          projects and teamwork!
+          robots for competitions and real-world applications.
         </p>
         <h3>Club President</h3>
         <p>Naseef Muhamad</p>
@@ -106,7 +95,6 @@ function RoboticsClub() {
 
       <section className="club-section">
         <h2>Featured Projects</h2>
-        <p>Check out some of our recent creations:</p>
         <div className="project-gallery">
           {projects.map((project, index) => (
             <div key={index} className="project-item">
@@ -119,48 +107,29 @@ function RoboticsClub() {
 
       <section className="club-section">
         <h2>Robotics Tips</h2>
-        <p>Click the button below to get a random robotics tip!</p>
-        <button className="btn" onClick={showTip}>
-          Get a Tip
-        </button>
+        <button className="btn" onClick={showTip}>Get a Tip</button>
         <p className="tip-text">{tip}</p>
       </section>
 
       <section className="club-section">
         <h2>Robotics Quiz</h2>
-        <p>
-          <strong>Question:</strong> What component is most critical for a
-          robot to navigate autonomously?
-        </p>
+        <p><strong>Question:</strong> What’s critical for autonomous navigation?</p>
         <div className="quiz-buttons">
-          <button className="btn" onClick={() => checkAnswer("a")}>
-            A. Bright LEDs
-          </button>
-          <button className="btn" onClick={() => checkAnswer("b")}>
-            B. Sensors
-          </button>
-          <button className="btn" onClick={() => checkAnswer("c")}>
-            C. Extra Batteries
-          </button>
+          <button className="btn" onClick={() => checkAnswer("a")}>A. LEDs</button>
+          <button className="btn" onClick={() => checkAnswer("b")}>B. Sensors</button>
+          <button className="btn" onClick={() => checkAnswer("c")}>C. Batteries</button>
         </div>
-        <p
-          className="quiz-result"
-          style={{ color: quizResult.includes("Correct") ? "green" : "red" }}
-        >
+        <p className="quiz-result" style={{ color: quizResult.includes("Correct") ? "green" : "red" }}>
           {quizResult}
         </p>
       </section>
 
       <section className="club-section">
         <h2>Leaderboard 🏆</h2>
-        <p>
-          Your Score: <strong>{score}</strong>
-        </p>
+        <p>Your Score: <strong>{score}</strong></p>
         <ol>
           {leaderboard.map((entry, index) => (
-            <li key={index}>
-              {entry.score} points - {entry.date}
-            </li>
+            <li key={index}>{entry.score} points - {entry.date}</li>
           ))}
         </ol>
       </section>
