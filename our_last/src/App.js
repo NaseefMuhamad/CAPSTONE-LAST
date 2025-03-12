@@ -5,6 +5,9 @@ import NavBar from './components/NavBar'; // Imported and now used
 import Welcome from './components/WelcomePage';
 import Dashboard from './components/Dashboard';
 import ClubPage from './components/ClubPage';
+import Login from './components/login';
+import Signup from './components/signup';
+
 import './styles/App.css';
 
 function App() {
@@ -16,6 +19,8 @@ function App() {
           <Route path="/" element={<Welcome />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/club/:clubName" element={<ClubPage />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="signup" element={<Signup />} />
         </Routes>
       </div>
     </Router>
