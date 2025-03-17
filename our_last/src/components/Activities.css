@@ -1,0 +1,114 @@
+/* Full-page styling to match other pages */
+.activities-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Title Styling */
+.activities-container h1 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.activities-container h2 {
+    font-size: 22px;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* Activities List Styling */
+.activities-list {
+    list-style: none;
+    padding: 0;
+}
+
+.activity-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background 0.3s;
+}
+
+.activity-item:hover {
+    background: #e9ecef;
+}
+
+.activity-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.activity-header strong {
+    font-size: 18px;
+    color: #333;
+}
+
+.activity-date {
+    font-size: 14px;
+    color: #666;
+}
+
+.activity-description {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.activity-chapter {
+    font-size: 14px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+/* Back Link Styling */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .activities-container {
+        width: 95%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .activities-container {
+        padding: 25px;
+    }
+    .activities-container h1 {
+        font-size: 22px;
+    }
+    .activities-container h2 {
+        font-size: 18px;
+    }
+    .activity-header strong {
+        font-size: 16px;
+    }
+    .activity-description {
+        font-size: 14px;
+    }
+    .activity-chapter {
+        font-size: 12px;
+    }
+}

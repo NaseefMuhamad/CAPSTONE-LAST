@@ -1,0 +1,118 @@
+/* Basic styling for the form container */
+.enrollment-form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Form heading styling */
+  .enrollment-form h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Styling for the form input fields */
+  .enrollment-form input,
+  .enrollment-form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+  }
+  
+  /* Button styling */
+  .enrollment-form .btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .enrollment-form .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Success message styling */
+  .success-message {
+    text-align: center;
+    font-size: 18px;
+    color: #28a745;
+  }
+  
+  .success-message h2 {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .success-message p {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  /* Error or general message styling */
+  .message {
+    font-size: 14px;
+    color: #dc3545;
+    margin-top: 10px;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .enrollment-form-container {
+      padding: 15px;
+    }
+  
+    .enrollment-form input,
+    .enrollment-form select,
+    .enrollment-form .btn {
+      font-size: 14px;
+    }
+  
+    .success-message h2 {
+      font-size: 22px;
+    }
+  
+    .success-message p {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .enrollment-form-container {
+      padding: 10px;
+    }
+  
+    .enrollment-form h2 {
+      font-size: 20px;
+    }
+  
+    .enrollment-form input,
+    .enrollment-form select {
+      font-size: 12px;
+    }
+  
+    .success-message h2 {
+      font-size: 20px;
+    }
+  
+    .success-message p {
+      font-size: 12px;
+    }
+  }
+  

@@ -36,3 +36,18 @@ export const loginUser = async (email, password) => {
         throw error;
     }
 };
+
+export const LoginUser = async (credentials) => {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
+    });
+    if (!response.ok) throw new Error('Login failed');
+    return response.json(); // { role: 'president', name: 'Lisa', token: '...' }
+  };
+  
+  export const logoutUser = async () => {
+    // Optional: Call a logout endpoint if needed
+    await fetch('/api/logout', { method: 'POST' });
+  };

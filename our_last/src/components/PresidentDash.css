@@ -1,0 +1,143 @@
+/* Full-page styling to match other pages */
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(to right, #007bff, #00c6ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  /* Centering the dashboard */
+  .president-dashboard {
+    width: 90%;
+    max-width: 800px;
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* Title Styling */
+  .president-dashboard h1 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .president-dashboard h2 {
+    font-size: 22px;
+    color: #007bff;
+    margin-bottom: 15px;
+  }
+  
+  /* Form styling */
+  .president-dashboard form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: left;
+  }
+  
+  .president-dashboard label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+  }
+  
+  .president-dashboard input,
+  .president-dashboard textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    outline: none;
+    transition: border 0.3s ease-in-out;
+  }
+  
+  .president-dashboard input:focus,
+  .president-dashboard textarea:focus {
+    border-color: #007bff;
+  }
+  
+  /* Submit button */
+  .president-dashboard button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  .president-dashboard button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Chapter Progress Section */
+  .president-dashboard ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .president-dashboard li {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background 0.3s;
+  }
+  
+  .president-dashboard li:hover {
+    background: #e9ecef;
+  }
+  
+  .president-dashboard a {
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .president-dashboard a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .president-dashboard {
+      width: 95%;
+      padding: 30px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .president-dashboard {
+      padding: 25px;
+    }
+    .president-dashboard h1 {
+      font-size: 22px;
+    }
+    .president-dashboard h2 {
+      font-size: 18px;
+    }
+    .president-dashboard input,
+    .president-dashboard textarea {
+      font-size: 14px;
+      padding: 10px;
+    }
+    .president-dashboard button {
+      font-size: 16px;
+      padding: 10px;
+    }
+  }
+  

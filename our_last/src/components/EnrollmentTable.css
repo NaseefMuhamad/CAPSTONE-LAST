@@ -1,0 +1,78 @@
+/* Styling for the table container */
+.enrollments-table-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Table heading styling */
+  .enrollments-table-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Table styling */
+  .enrollments-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+  }
+  
+  .enrollments-table th,
+  .enrollments-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .enrollments-table th {
+    background-color: #f8f9fa;
+    color: #333;
+  }
+  
+  .enrollments-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Button styling */
+  .enrollments-table .btn {
+    padding: 8px 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .enrollments-table .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .enrollments-table-container {
+      padding: 15px;
+    }
+  
+    .enrollments-table th,
+    .enrollments-table td {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .enrollments-table-container {
+      padding: 10px;
+    }
+  
+    .enrollments-table th,
+    .enrollments-table td {
+      font-size: 12px;
+    }
+  }
+  

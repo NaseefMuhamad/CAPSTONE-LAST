@@ -1,0 +1,93 @@
+/* Full-page styling to match other pages */
+.user-profile-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Title Styling */
+.user-profile-container h1 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* User Profile Styling */
+.user-profile-container h2 {
+    font-size: 22px;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+.user-profile-details {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.user-profile-details h2 {
+    font-size: 24px;
+    color: #333;
+}
+
+.user-profile-details p {
+    font-size: 16px;
+    color: #555;
+    margin: 10px 0;
+}
+
+.user-profile-details strong {
+    color: #007bff;
+}
+
+/* Back Link Styling */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .user-profile-container {
+        width: 95%;
+        padding: 30px;
+    }
+
+    .user-profile-details {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-profile-container {
+        padding: 25px;
+    }
+
+    .user-profile-container h1 {
+        font-size: 22px;
+    }
+
+    .user-profile-container h2 {
+        font-size: 18px;
+    }
+
+    .user-profile-details h2 {
+        font-size: 20px;
+    }
+
+    .user-profile-details p {
+        font-size: 14px;
+    }
+}

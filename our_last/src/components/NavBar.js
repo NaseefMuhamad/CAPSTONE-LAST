@@ -28,6 +28,9 @@ function NavBar() {
         <NavLink to="/login" className="nav-link" activeClassName="active" onClick={() => setIsOpen(false)}>
           Login
         </NavLink>
+        <NavLink to="/UserProfiles" className="nav-link" activeClassName="active" onClick={() => setIsOpen(false)}>
+          User Profile
+        </NavLink>
         <NavLink to="/signup" className="nav-link" activeClassName="active" onClick={() => setIsOpen(false)}>
           Signup
         </NavLink>
