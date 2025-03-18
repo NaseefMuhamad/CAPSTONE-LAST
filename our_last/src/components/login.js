@@ -19,7 +19,13 @@ const Login = () => {
       const data = await loginUser(email, password); // Use API call
       login({ userId: data.userId, role: data.role, token: data.token }); // Sync with context
       setMessage({ text: "Login successful! Redirecting...", type: "success" });
+
+      //Redirecting based on role
+      if (data.role === "president"){
+        setTimeout(() => navigate("/PresDash"), 1000); //Redirest to President Dashboard
+      } else {
       setTimeout(() => navigate("/dashboard"), 1000);
+      }
     } catch (error) {
       const errorMsg = error.response?.data?.message || "Login failed. Try again.";
       setMessage({ text: errorMsg, type: "error" });

@@ -23,7 +23,7 @@ export const registerUser = async (name, email, password, role = "student") => {
 // Function to log in a user
 export const loginUser = async (email, password) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/login`, {
+        const response = await axios.post(`${API_BASE_URL}/signin`, {
             email,
             password,
         });
