@@ -1,7 +1,9 @@
 // src/clubs/DataScienceClub.js
 import React, { useState, useEffect } from "react";
-import JoinForm from "../components/JoinForm";
-import dataScienceBanner from '../assets/DataScienceBanner.jpg'; // Ensure this exists
+
+import dataScienceBanner from '../assets/DataScienceBanner.jpg';
+import dataVisualization from '../assets/data-visualization.jpg'; // Section icon
+import dataEventImg from '../assets/DataEventImg.webp'; // Event image
 
 function DataScienceClub() {
   const [tip, setTip] = useState("");
@@ -47,7 +49,7 @@ function DataScienceClub() {
       </section>
 
       <section className="club-section">
-        <h2>What is Data Science Club?</h2>
+        <h2><img src={dataVisualization} alt="Chart Icon" className="club-icon" />What is Data Science Club?</h2>
         <p>
           Data Science Club explores data analysis, machine learning, and visualization to uncover insights and solve problems.
         </p>
@@ -62,24 +64,22 @@ function DataScienceClub() {
       </section>
 
       <section className="club-section">
-        <h2>Data Science Tips</h2>
+        <h2><img src={dataVisualization} alt="Tips Icon" className="club-icon" />Data Science Tips</h2>
         <p>Click below for a random tip to boost your data skills!</p>
-        <button className="btn" onClick={showTip}>
-          Get a Tip
-        </button>
+        <button className="btn" onClick={showTip}>Get a Tip</button>
         <p className="tip-text">{tip}</p>
       </section>
 
       <section className="club-section">
-        <h2>Upcoming Events</h2>
+        <h2><img src={dataVisualization} alt="Events Icon" className="club-icon" />Upcoming Events</h2>
         <ul>
-          <li>Data Cleaning Workshop - April 6th, 2025</li>
-          <li>Machine Learning Hackathon - April 15th, 2025</li>
-          <li>Data Viz Showcase - April 22nd, 2025</li>
+          <li><img src={dataEventImg} alt="Cleaning Event" className="club-event-img" />Data Cleaning Workshop - April 6th, 2025</li>
+          <li><img src={dataEventImg} alt="Hackathon Event" className="club-event-img" />Machine Learning Hackathon - April 15th, 2025</li>
+          <li><img src={dataEventImg} alt="Showcase Event" className="club-event-img" />Data Viz Showcase - April 22nd, 2025</li>
         </ul>
       </section>
 
-      <JoinForm clubName="datascience" />
+      
 
       <footer className="club-footer">
         <p>© 2025 Data Science Club. All rights reserved.</p>

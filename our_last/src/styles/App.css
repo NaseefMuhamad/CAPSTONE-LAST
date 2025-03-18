@@ -276,17 +276,23 @@ body {
   color: #d1d5db;
 }
 
+/* src/styles/App.css (relevant club section only) */
 .club-page .club-banner-section {
   margin-bottom: 30px;
+  width: 100%;
+  overflow: visible; 
 }
 
 .club-page .club-banner {
   width: 100%;
-  height: 320px;
-  object-fit: cover;
+  max-width: 1200px; 
+  height: auto; 
+  max-height: 400px; 
+  object-fit: contain; 
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
   border: 1px solid #3b82f6;
+  display: block; 
 }
 
 .club-page .club-section {

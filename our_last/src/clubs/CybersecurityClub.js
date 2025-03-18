@@ -1,7 +1,9 @@
 // src/clubs/CybersecurityClub.js
 import React, { useState, useEffect } from "react";
-import JoinForm from "../components/JoinForm";
-import cybersecurityBanner from '../assets/CybersecurityBanner.jpg'; // Ensure this exists
+
+import cybersecurityBanner from '../assets/CybersecurityBanner.jpg';
+import lockIcon from '../assets/LockIcon.jpg'; // Section icon
+import quizTrophy from '../assets/QuizTrophy.jpg'; // Quiz icon
 
 function CybersecurityClub() {
   const [tip, setTip] = useState("");
@@ -86,7 +88,7 @@ function CybersecurityClub() {
       </section>
 
       <section className="club-section">
-        <h2>What is Cyber Security?</h2>
+        <h2><img src={lockIcon} alt="Lock Icon" className="club-icon" />What is Cyber Security?</h2>
         <p>
           Cyber security protects systems, networks, and data from cyber threats such as hacking, phishing, and malware attacks.
         </p>
@@ -101,7 +103,7 @@ function CybersecurityClub() {
       </section>
 
       <section className="club-section">
-        <h2>Common Cyber Threats</h2>
+        <h2><img src={lockIcon} alt="Threats Icon" className="club-icon" />Common Cyber Threats</h2>
         <ul>
           {threats.map((threat, index) => (
             <li key={index}>{threat}</li>
@@ -110,53 +112,38 @@ function CybersecurityClub() {
       </section>
 
       <section className="club-section">
-        <h2>Cyber Security Tips</h2>
+        <h2><img src={lockIcon} alt="Tips Icon" className="club-icon" />Cyber Security Tips</h2>
         <p>Click the button below to get a random cyber security tip!</p>
-        <button className="btn" onClick={showTip}>
-          Get a Tip
-        </button>
+        <button className="btn" onClick={showTip}>Get a Tip</button>
         <p className="tip-text">{tip}</p>
       </section>
 
       <section className="club-section">
-        <h2>Cyber Security Quiz</h2>
+        <h2><img src={quizTrophy} alt="Quiz Icon" className="club-icon" />Cyber Security Quiz</h2>
         <p>
           <strong>Question:</strong> What is the best way to protect your password?
         </p>
         <div className="quiz-buttons">
-          <button className="btn" onClick={() => checkAnswer("a")}>
-            A. Use the same password everywhere
-          </button>
-          <button className="btn" onClick={() => checkAnswer("b")}>
-            B. Share it with a friend
-          </button>
-          <button className="btn" onClick={() => checkAnswer("c")}>
-            C. Use a unique and strong password
-          </button>
+          <button className="btn" onClick={() => checkAnswer("a")}>A. Use the same password everywhere</button>
+          <button className="btn" onClick={() => checkAnswer("b")}>B. Share it with a friend</button>
+          <button className="btn" onClick={() => checkAnswer("c")}>C. Use a unique and strong password</button>
         </div>
-        <p
-          className="quiz-result"
-          style={{ color: quizResult.includes("Correct") ? "#10b981" : "#ef4444" }}
-        >
+        <p className="quiz-result" style={{ color: quizResult.includes("Correct") ? "#10b981" : "#ef4444" }}>
           {quizResult}
         </p>
       </section>
 
       <section className="club-section">
-        <h2>Leaderboard 🏆</h2>
-        <p>
-          Your Score: <strong>{score}</strong>
-        </p>
+        <h2><img src={quizTrophy} alt="Leaderboard Icon" className="club-icon" />Leaderboard 🏆</h2>
+        <p>Your Score: <strong>{score}</strong></p>
         <ol>
           {leaderboard.map((entry, index) => (
-            <li key={index}>
-              {entry.score} points - {entry.date}
-            </li>
+            <li key={index}>{entry.score} points - {entry.date}</li>
           ))}
         </ol>
       </section>
 
-      <JoinForm clubName="cybersecurity" />
+      
 
       <footer className="club-footer">
         <p>© 2025 Cybersecurity Club. All rights reserved.</p>

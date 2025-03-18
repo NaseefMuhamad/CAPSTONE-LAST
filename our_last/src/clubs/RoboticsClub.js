@@ -1,7 +1,9 @@
 // src/clubs/RoboticsClub.js
 import React, { useState, useEffect } from "react";
-import JoinForm from "../components/JoinForm";
-import roboticsBanner from '../assets/RoboticsBanner.jpg'; // Ensure this exists
+
+import roboticsBanner from '../assets/RoboticsBanner.jpg';
+import gearIcon from '../assets/GearIcon.webp'; // Renamed to match case
+import robotEvent from '../assets/RobotEvent.jpeg'; // Renamed to match case
 
 function RoboticsClub() {
   const [tip, setTip] = useState("");
@@ -47,7 +49,7 @@ function RoboticsClub() {
       </section>
 
       <section className="club-section">
-        <h2>What is Robotics Club?</h2>
+        <h2><img src={gearIcon} alt="Gear Icon" className="club-icon" />What is Robotics Club?</h2>
         <p>
           Robotics Club is where we design, build, and program robots to solve real-world challenges and compete in events.
         </p>
@@ -62,24 +64,22 @@ function RoboticsClub() {
       </section>
 
       <section className="club-section">
-        <h2>Robotics Tips</h2>
+        <h2><img src={gearIcon} alt="Tips Icon" className="club-icon" />Robotics Tips</h2>
         <p>Click below for a random tip to up your robotics game!</p>
-        <button className="btn" onClick={showTip}>
-          Get a Tip
-        </button>
+        <button className="btn" onClick={showTip}>Get a Tip</button>
         <p className="tip-text">{tip}</p>
       </section>
 
       <section className="club-section">
-        <h2>Upcoming Events</h2>
+        <h2><img src={gearIcon} alt="Events Icon" className="club-icon" />Upcoming Events</h2>
         <ul>
-          <li>Robot Build Workshop - April 5th, 2025</li>
-          <li>Competition Prep - April 12th, 2025</li>
-          <li>Regional Robotics Challenge - April 20th, 2025</li>
+          <li><img src={robotEvent} alt="Build Event" className="club-event-img" />Robot Build Workshop - April 5th, 2025</li>
+          <li><img src={robotEvent} alt="Prep Event" className="club-event-img" />Competition Prep - April 12th, 2025</li>
+          <li><img src={robotEvent} alt="Challenge Event" className="club-event-img" />Regional Robotics Challenge - April 20th, 2025</li>
         </ul>
       </section>
 
-      <JoinForm clubName="robotics" />
+      
 
       <footer className="club-footer">
         <p>© 2025 Robotics Club. All rights reserved.</p>
