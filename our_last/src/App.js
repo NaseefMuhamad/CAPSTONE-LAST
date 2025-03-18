@@ -6,8 +6,8 @@ import Dashboard from './components/Dashboard';
 import RoboticsClub from './clubs/RoboticsClub';
 import CybersecurityClub from './clubs/CybersecurityClub';
 import DataScienceClub from './clubs/DataScienceClub';
-import Signup from './components/Signup';
-import Login from './components/Login';
+import Signup from './components/signup';
+import Login from './components/login';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { logoutUser } from './api/api'; // Adjust path
