@@ -8,6 +8,7 @@ import CybersecurityClub from './clubs/CybersecurityClub';
 import DataScienceClub from './clubs/DataScienceClub';
 import Signup from './components/signup';
 import Login from './components/login';
+import PresidentDashboard from './components/PresDash';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { logoutUser } from './api/api'; // Adjust path
@@ -53,6 +54,7 @@ function App() {
           <Route path="/" element={<WelcomePage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/PresDash" element={<PresidentDashboard />} />
           <Route
             path="/dashboard"
             element={
