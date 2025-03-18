@@ -1,76 +1,66 @@
-
-
 // src/App.js
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-import NavBar from './components/NavBar'; // Imported and now used
-import Welcome from './components/WelcomePage';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, NavLink } from 'react-router-dom';
+import WelcomePage from './components/WelcomePage';
 import Dashboard from './components/Dashboard';
-import ClubPage from './components/ClubPage';
-import Login from './components/login';
-import Signup from './components/signup';
-import PresidentDashboard from './components/PresDash';
-import Activities from './components/activities';
-import UserProfiles from './components/UserProfiles';
-import EnrollmentsTable from './components/EnrollmentTable';
-import EnrollmentForm from './components/EnrollmentForm';
-import { AuthContext, AuthProvider } from './context/AuthContext';
-
+import RoboticsClub from './clubs/RoboticsClub';
+import CybersecurityClub from './clubs/CybersecurityClub';
+import DataScienceClub from './clubs/DataScienceClub';
+import Signup from './components/Signup';
+import Login from './components/Login';
+import PrivateRoute from './components/PrivateRoute';
 import './styles/App.css';
 
 function App() {
+  const [isNavOpen, setIsNavOpen] = useState(false);
+
+  const toggleNav = () => setIsNavOpen(!isNavOpen);
+
+  const handleLogout = () => {
+    localStorage.removeItem("authToken");
+    window.location.href = "/login";
+  };
+
   return (
-    <AuthProvider>
-      <Router>
-        <div className="App">
-          <NavBar />
-          <Routes>
-            <Route path="/" element={<Welcome />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/club/:clubName" element={<ClubPage />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/activities" element={<Activities/>} />
-            <Route path="/UserProfiles" element ={<UserProfiles />} />
-            <Route path="/EnrollmentTable" element={<EnrollmentsTable />} />
-            <Route path="/EnrollmentForm" element={<EnrollmentForm />} />
-            <Route
-              path="/PresDash"
-              element={
-                <ProtectedRoute role="president" redirectTo="/login">
-                  <PresidentDashboard />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </div>
-      </Router>
-    </AuthProvider>
+    <Router>
+      <div className="App">
+        <nav className="navbar">
+          <div className="navbar-brand">Club Hub</div>
+          <button className="nav-toggle" onClick={toggleNav}>☰</button>
+          <div className={`nav-links ${isNavOpen ? 'active' : ''}`}>
+            <NavLink to="/" className="nav-link" activeClassName="active" exact>Home</NavLink>
+            <NavLink to="/dashboard" className="nav-link" activeClassName="active">Dashboard</NavLink>
+            {localStorage.getItem("authToken") ? (
+              <button className="nav-link logout-btn" onClick={handleLogout}>
+                Logout
+              </button>
+            ) : (
+              <>
+                <NavLink to="/signup" className="nav-link" activeClassName="active">Sign Up</NavLink>
+                <NavLink to="/login" className="nav-link" activeClassName="active">Login</NavLink>
+              </>
+            )}
+          </div>
+        </nav>
+        <Routes>
+          <Route path="/" element={<WelcomePage />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/dashboard"
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/club/cybersecurity" element={<CybersecurityClub />} />
+          <Route path="/club/datascience" element={<DataScienceClub />} />
+          <Route path="/club/robotics" element={<RoboticsClub />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
-
-// // ProtectedRoute Component to handle role-based route protection
-// function ProtectedRoute({ role, redirectTo, children }) {
-//   const { user } = useContext(AuthContext); // Access the user from context
-
-//   // Check if the user exists and if the role matches the required one
-//   if (!user || user.role !== role) {
-//     return <Navigate to={redirectTo} />;
-//   }
-
-//   return children;
-// }
-function ProtectedRoute({ role, redirectTo, children }) {
-  const { user } = useContext(AuthContext); // Access user from context
-  console.log('User in ProtectedRoute:', user); // Log user object
-
-  if (!user || user.role !== role) {
-    console.log('Redirecting to:', redirectTo); // Log redirection path
-    return <Navigate to={redirectTo} />;
-  }
-
-  return children;
-}
-
 
 export default App;

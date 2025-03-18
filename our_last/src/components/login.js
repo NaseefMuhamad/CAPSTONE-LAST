@@ -1,43 +1,29 @@
-import React, { useState, useContext} from "react";
+// src/components/Login.js
+import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import {AuthContext} from '../context/AuthContext';
-import "./Auth.css"; // Shared CSS file
-
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [message, setMessage] = useState(""); // Message state
+  const [message, setMessage] = useState("");
   const navigate = useNavigate();
-
-  const {login} = useContext(AuthContext);
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear previous messages
+    setMessage("");
 
     try {
-      const response= await axios.post("http://localhost:8080/api/signin", {
+      const response = await axios.post("http://localhost:8080/api/login", {
         email,
         password,
       });
-      console.log(response);
-      const userData = response.data;
-      console.log('User Data after login:', userData);
-      login(userData);
-
+      const { token } = response.data; // Assuming backend returns a token
+      localStorage.setItem("authToken", token); // Store token
       setMessage({ text: "Login successful! Redirecting...", type: "success" });
-      setTimeout(() => {
-        if (userData.role === 'president'){
-          console.log('Redirecting to /PresDash')
-          navigate('/PresDash');
-        } else{
-        navigate("/dashboard"); 
-        }// Redirect to dashboard
-      }, 2000);
+      setTimeout(() => navigate("/dashboard"), 1000); // Redirect to dashboard
     } catch (error) {
-      const errorMsg = error.response?.data?.message || "Invalid email or password.";
+      const errorMsg = error.response?.data?.message || "Login failed. Try again.";
       setMessage({ text: errorMsg, type: "error" });
     }
   };
@@ -69,7 +55,7 @@ const Login = () => {
           <button type="submit" className="auth-button">Login</button>
         </form>
         <p>
-          Don't have an account? <Link to="/signup" className="auth-link">Sign Up</Link>
+          Need an account? <Link to="/signup" className="auth-link">Sign Up</Link>
         </p>
       </div>
     </div>

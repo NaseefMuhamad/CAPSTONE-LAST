@@ -1,28 +1,31 @@
+// src/components/Signup.js
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./Auth.css"; // Shared CSS file
 
 const Signup = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("student"); // Default role
-  const [message, setMessage] = useState(""); // Message state
+  const [role, setRole] = useState("president");
+  const [message, setMessage] = useState("");
+  const navigate = useNavigate();
 
   const handleSignup = async (e) => {
     e.preventDefault();
-    setMessage(""); // Clear previous messages
+    setMessage("");
 
     try {
-       await axios.post("http://localhost:8080/api/register", {
+      const response = await axios.post("http://localhost:8080/api/register", {
         name,
         email,
         password,
         role,
       });
-
-      setMessage({ text: "Signup successful! You can now log in.", type: "success" });
+      const { token } = response.data; // Assuming backend returns a token
+      localStorage.setItem("authToken", token); // Store token
+      setMessage({ text: "Signup successful! Redirecting...", type: "success" });
+      setTimeout(() => navigate("/dashboard"), 1000); // Redirect to dashboard
     } catch (error) {
       const errorMsg = error.response?.data?.message || "Signup failed. Try again.";
       setMessage({ text: errorMsg, type: "error" });
@@ -61,9 +64,8 @@ const Signup = () => {
             required
           />
           <select value={role} onChange={(e) => setRole(e.target.value)} required>
-            <option value="student">Student</option>
-            <option value="admin">Admin</option>
             <option value="president">President</option>
+            <option value="admin">Admin</option>
           </select>
           <button type="submit" className="auth-button">Sign Up</button>
         </form>
