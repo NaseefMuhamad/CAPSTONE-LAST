@@ -1,27 +1,23 @@
 // src/components/Login.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useAuth } from '../context/AuthContext'; // Import useAuth
+import { loginUser } from '../api/api'; // Adjust path
+import { useAuth } from '../context/AuthContext';
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth(); // Get login from context
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     setMessage("");
 
     try {
-      const response = await axios.post("http://localhost:8080/api/login", {
-        email,
-        password,
-      });
-      const { userId, role, token } = response.data; // Expecting these from backend
-      login({ userId, role, token }); // Set user in context
+      const data = await loginUser(email, password); // Use API call
+      login({ userId: data.userId, role: data.role, token: data.token }); // Sync with context
       setMessage({ text: "Login successful! Redirecting...", type: "success" });
       setTimeout(() => navigate("/dashboard"), 1000);
     } catch (error) {

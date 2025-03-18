@@ -1,8 +1,8 @@
 // src/components/Signup.js
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useAuth } from '../context/AuthContext'; // Import useAuth
+import { registerUser } from '../api/api'; // Adjust path
+import { useAuth } from '../context/AuthContext';
 
 const Signup = () => {
   const [name, setName] = useState("");
@@ -11,21 +11,15 @@ const Signup = () => {
   const [role, setRole] = useState("president");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
-  const { login } = useAuth(); // Get login from context
+  const { login } = useAuth();
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setMessage("");
 
     try {
-      const response = await axios.post("http://localhost:8080/api/register", {
-        name,
-        email,
-        password,
-        role,
-      });
-      const { userId, role: userRole, token } = response.data; // Expecting these
-      login({ userId, role: userRole, token }); // Set user in context
+      const data = await registerUser(name, email, password, role);
+      login({ userId: data.userId, role: data.role, token: data.token });
       setMessage({ text: "Signup successful! Redirecting...", type: "success" });
       setTimeout(() => navigate("/dashboard"), 1000);
     } catch (error) {

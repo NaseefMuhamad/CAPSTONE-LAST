@@ -9,7 +9,8 @@ import DataScienceClub from './clubs/DataScienceClub';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
-import { useAuth } from './context/AuthContext';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { logoutUser } from './api/api'; // Adjust path
 import './styles/App.css';
 
 function App() {
@@ -18,8 +19,10 @@ function App() {
 
   const toggleNav = () => setIsNavOpen(!isNavOpen);
 
-  const handleLogout = () => {
-    logout();
+  const handleLogout = async () => {
+    console.log("Logging out...");
+    await logoutUser(); // Call API logout
+    logout(); // Clear context
     window.location.href = "/login";
   };
 
@@ -32,7 +35,7 @@ function App() {
           <div className="navbar-brand">Club Hub</div>
           <button className="nav-toggle" onClick={toggleNav}>☰</button>
           <div className={`nav-links ${isNavOpen ? 'active' : ''}`}>
-            <NavLink to="/" className="nav-link" activeClassName="active" exact>Home</NavLink>
+            <NavLink to="/" className="nav-link" activeClassName="active">Home</NavLink>
             <NavLink to="/dashboard" className="nav-link" activeClassName="active">Dashboard</NavLink>
             {user ? (
               <button className="nav-link logout-btn" onClick={handleLogout}>
@@ -68,4 +71,13 @@ function App() {
   );
 }
 
-export default App; // Export App only
+function Root() {
+  console.log("Root rendering");
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  );
+}
+
+export default Root;
