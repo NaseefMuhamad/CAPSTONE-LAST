@@ -235,39 +235,152 @@ body {
 /* Club Pages */
 .club-page {
   padding: 30px;
-  background: linear-gradient(135deg, #1e3a8a, #d1d5db);
+  background: linear-gradient(135deg, #1e3a8a, #d1d5db) !important;
   border-radius: 12px;
   min-height: 100vh;
   box-shadow: 0 6px 20px rgba(30, 58, 138, 0.1);
+  color: #ffffff;
 }
 
-.club-header {
+.club-page.dark-mode {
+  background: linear-gradient(135deg, #0f172a, #4b5563) !important;
+  color: #d1d5db;
+}
+
+.club-page.light-mode {
+  background: linear-gradient(135deg, #1e3a8a, #d1d5db) !important;
+  color: #1e3a8a;
+}
+
+.club-page .club-header {
   padding: 20px;
   background: rgba(30, 58, 138, 0.9);
   border-radius: 8px;
   text-align: center;
   margin-bottom: 30px;
   box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.club-header h1 {
+.club-page .club-header h1 {
   font-size: 2.5rem;
   color: #ffffff;
   font-weight: 700;
 }
 
-.club-banner {
+.club-page .club-clock {
+  font-size: 1.2rem;
+  color: #d1d5db;
+}
+
+.club-page .club-banner-section {
+  margin-bottom: 30px;
+}
+
+.club-page .club-banner {
   width: 100%;
   height: 320px;
   object-fit: cover;
   border-radius: 8px;
-  margin-bottom: 20px;
   box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
   border: 1px solid #3b82f6;
 }
 
-.club-clock, .club-section h2, .club-section h3, .club-section p, .club-section li {
+.club-page .club-section {
+  padding: 20px;
+  background: rgba(59, 130, 246, 0.05);
+  border-radius: 8px;
+  margin-bottom: 20px;
+}
+
+.club-page .club-section h2 {
+  font-size: 1.8rem;
   color: #ffffff;
+  margin-bottom: 15px;
+}
+
+.club-page .club-section h3 {
+  font-size: 1.4rem;
+  color: #d1d5db;
+  margin-bottom: 10px;
+}
+
+.club-page .club-section p {
+  font-size: 1.1rem;
+  color: #d1d5db;
+}
+
+.club-page .club-section ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.club-page .club-section li {
+  font-size: 1.1rem;
+  color: #d1d5db;
+  margin-bottom: 8px;
+}
+
+.club-page .btn {
+  padding: 10px 20px;
+  background: linear-gradient(45deg, #3b82f6, #60a5fa);
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 5px;
+}
+
+.club-page .btn:hover {
+  background: linear-gradient(45deg, #60a5fa, #3b82f6);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+.club-page .toggle-btn {
+  background: #4b5563;
+}
+
+.club-page .toggle-btn:hover {
+  background: #6b7280;
+}
+
+.club-page .tip-text {
+  font-size: 1.2rem;
+  color: #60a5fa;
+  margin-top: 10px;
+}
+
+.club-page .quiz-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+.club-page .quiz-result {
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
+.club-page .club-footer {
+  text-align: center;
+  padding: 20px;
+  background: rgba(30, 58, 138, 0.9);
+  border-radius: 8px;
+  margin-top: 30px;
+  box-shadow: 0 4px 12px rgba(30, 58, 138, 0.15);
+}
+
+.club-page .club-footer p {
+  font-size: 1rem;
+  color: #d1d5db;
 }
 
 /* Auth Pages */
@@ -411,7 +524,12 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .club-banner {
+  .club-page .club-banner {
     height: 250px;
+  }
+
+  .club-page .club-header {
+    flex-direction: column;
+    gap: 10px;
   }
 }

@@ -1,10 +1,9 @@
+// src/clubs/CybersecurityClub.js
 import React, { useState, useEffect } from "react";
 import JoinForm from "../components/JoinForm";
-
-
+import cybersecurityBanner from '../assets/CybersecurityBanner.jpg'; // Ensure this exists
 
 function CybersecurityClub() {
-  // State variables
   const [tip, setTip] = useState("");
   const [quizResult, setQuizResult] = useState("");
   const [time, setTime] = useState(new Date().toLocaleTimeString());
@@ -12,7 +11,6 @@ function CybersecurityClub() {
   const [score, setScore] = useState(0);
   const [leaderboard, setLeaderboard] = useState([]);
 
-  // Cyber Security Threats
   const threats = [
     "Phishing Attacks",
     "Malware & Ransomware",
@@ -21,7 +19,6 @@ function CybersecurityClub() {
     "Weak Password Attacks",
   ];
 
-  // Cyber Security Tips
   const tips = [
     "Use strong and unique passwords.",
     "Enable two-factor authentication (2FA).",
@@ -31,45 +28,38 @@ function CybersecurityClub() {
     "Back up your data frequently.",
   ];
 
-  // Function to get a random cyber security tip
   const showTip = () => {
     const randomTip = tips[Math.floor(Math.random() * tips.length)];
     setTip(randomTip);
   };
 
-  // Function to check quiz answer
   const checkAnswer = (answer) => {
     if (answer === "c") {
       setQuizResult("✅ Correct! Always use a strong, unique password.");
-      setScore((prevScore) => prevScore + 10);
-      updateLeaderboard(score + 10);
+      setScore((prevScore) => {
+        const newScore = prevScore + 10;
+        updateLeaderboard(newScore);
+        return newScore;
+      });
     } else {
       setQuizResult("❌ Incorrect. Try again!");
     }
   };
 
-  // Update leaderboard in local storage
   const updateLeaderboard = (newScore) => {
     const newLeaderboard = [
       ...leaderboard,
       { score: newScore, date: new Date().toLocaleString() },
-    ];
-    newLeaderboard.sort((a, b) => b.score - a.score);
-    setLeaderboard(newLeaderboard.slice(0, 5));
-    localStorage.setItem(
-      "cybersecurityLeaderboard",
-      JSON.stringify(newLeaderboard.slice(0, 5))
-    );
+    ].sort((a, b) => b.score - a.score).slice(0, 5);
+    setLeaderboard(newLeaderboard);
+    localStorage.setItem("cybersecurityLeaderboard", JSON.stringify(newLeaderboard));
   };
 
-  // Load leaderboard from local storage on mount
   useEffect(() => {
-    const savedLeaderboard =
-      JSON.parse(localStorage.getItem("cybersecurityLeaderboard")) || [];
+    const savedLeaderboard = JSON.parse(localStorage.getItem("cybersecurityLeaderboard")) || [];
     setLeaderboard(savedLeaderboard);
   }, []);
 
-  // Real-time clock effect
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date().toLocaleTimeString());
@@ -77,7 +67,6 @@ function CybersecurityClub() {
     return () => clearInterval(interval);
   }, []);
 
-  // Toggle Dark/Light Mode
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
@@ -85,7 +74,6 @@ function CybersecurityClub() {
   return (
     <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
       <header className="club-header">
-        
         <h1>Cybersecurity Club</h1>
         <div className="club-clock">{time}</div>
         <button className="btn toggle-btn" onClick={toggleDarkMode}>
@@ -93,11 +81,14 @@ function CybersecurityClub() {
         </button>
       </header>
 
+      <section className="club-banner-section">
+        <img src={cybersecurityBanner} alt="Cybersecurity Club Banner" className="club-banner" />
+      </section>
+
       <section className="club-section">
         <h2>What is Cyber Security?</h2>
         <p>
-          Cyber security protects systems, networks, and data from cyber
-          threats such as hacking, phishing, and malware attacks.
+          Cyber security protects systems, networks, and data from cyber threats such as hacking, phishing, and malware attacks.
         </p>
         <h3>Club President</h3>
         <p>Jona Kasule</p>
@@ -111,7 +102,6 @@ function CybersecurityClub() {
 
       <section className="club-section">
         <h2>Common Cyber Threats</h2>
-        
         <ul>
           {threats.map((threat, index) => (
             <li key={index}>{threat}</li>
@@ -121,7 +111,6 @@ function CybersecurityClub() {
 
       <section className="club-section">
         <h2>Cyber Security Tips</h2>
-        
         <p>Click the button below to get a random cyber security tip!</p>
         <button className="btn" onClick={showTip}>
           Get a Tip
@@ -131,11 +120,8 @@ function CybersecurityClub() {
 
       <section className="club-section">
         <h2>Cyber Security Quiz</h2>
-        
-        
         <p>
-          <strong>Question:</strong> What is the best way to protect your
-          password?
+          <strong>Question:</strong> What is the best way to protect your password?
         </p>
         <div className="quiz-buttons">
           <button className="btn" onClick={() => checkAnswer("a")}>
@@ -150,7 +136,7 @@ function CybersecurityClub() {
         </div>
         <p
           className="quiz-result"
-          style={{ color: quizResult.includes("Correct") ? "green" : "red" }}
+          style={{ color: quizResult.includes("Correct") ? "#10b981" : "#ef4444" }}
         >
           {quizResult}
         </p>
