@@ -25,16 +25,21 @@ export const registerUser = async (name, email, password, role = "student", admi
 // Function to log in a user
 export const loginUser = async (email, password) => {
     try {
-        const response = await axios.post(`${API_BASE_URL}/signin`, { email, password });
+        const response = await axios.post(
+            "http://localhost:8080/token",
+            { email, password }, // ✅ Corrected Request Body
+            { headers: { "Content-Type": "application/json" } } // ✅ Ensuring JSON format
+        );
 
         console.log("Login successful:", response.data);
-        localStorage.setItem("token", response.data.token); // Store token
+        localStorage.setItem("token", response.data.access_token); // ✅ Store token
         return response.data;
     } catch (error) {
         console.error("Login failed:", error.response?.data || error.message);
         throw error;
     }
 };
+
 
 // Alternative login function
 export const LoginUser = async (credentials) => {
