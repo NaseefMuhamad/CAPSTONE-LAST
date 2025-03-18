@@ -2,12 +2,14 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from '../context/AuthContext'; // Import useAuth
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+  const { login } = useAuth(); // Get login from context
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -18,10 +20,10 @@ const Login = () => {
         email,
         password,
       });
-      const { token } = response.data; // Assuming backend returns a token
-      localStorage.setItem("authToken", token); // Store token
+      const { userId, role, token } = response.data; // Expecting these from backend
+      login({ userId, role, token }); // Set user in context
       setMessage({ text: "Login successful! Redirecting...", type: "success" });
-      setTimeout(() => navigate("/dashboard"), 1000); // Redirect to dashboard
+      setTimeout(() => navigate("/dashboard"), 1000);
     } catch (error) {
       const errorMsg = error.response?.data?.message || "Login failed. Try again.";
       setMessage({ text: errorMsg, type: "error" });

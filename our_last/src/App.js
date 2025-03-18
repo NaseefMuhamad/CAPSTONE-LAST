@@ -9,17 +9,21 @@ import DataScienceClub from './clubs/DataScienceClub';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import PrivateRoute from './components/PrivateRoute';
+import { useAuth } from './context/AuthContext';
 import './styles/App.css';
 
 function App() {
   const [isNavOpen, setIsNavOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const toggleNav = () => setIsNavOpen(!isNavOpen);
 
   const handleLogout = () => {
-    localStorage.removeItem("authToken");
+    logout();
     window.location.href = "/login";
   };
+
+  console.log("App rendering, user:", user);
 
   return (
     <Router>
@@ -30,7 +34,7 @@ function App() {
           <div className={`nav-links ${isNavOpen ? 'active' : ''}`}>
             <NavLink to="/" className="nav-link" activeClassName="active" exact>Home</NavLink>
             <NavLink to="/dashboard" className="nav-link" activeClassName="active">Dashboard</NavLink>
-            {localStorage.getItem("authToken") ? (
+            {user ? (
               <button className="nav-link logout-btn" onClick={handleLogout}>
                 Logout
               </button>
@@ -57,10 +61,11 @@ function App() {
           <Route path="/club/cybersecurity" element={<CybersecurityClub />} />
           <Route path="/club/datascience" element={<DataScienceClub />} />
           <Route path="/club/robotics" element={<RoboticsClub />} />
+          <Route path="*" element={<div>404 - Not Found</div>} />
         </Routes>
       </div>
     </Router>
   );
 }
 
-export default App;
+export default App; // Export App only
