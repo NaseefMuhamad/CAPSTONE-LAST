@@ -9,6 +9,7 @@ const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("president");
+  const [adminSecret, setAdminSecret] = useState("")
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -18,7 +19,7 @@ const Signup = () => {
     setMessage("");
 
     try {
-      const data = await registerUser(name, email, password, role);
+      const data = await registerUser(name, email, password, role,role ==="admin"? adminSecret: undefined);
       login({ userId: data.userId, role: data.role, token: data.token });
       setMessage({ text: "Signup successful! Redirecting...", type: "success" });
       setTimeout(() => navigate("/dashboard"), 1000);
@@ -62,7 +63,20 @@ const Signup = () => {
           <select value={role} onChange={(e) => setRole(e.target.value)} required>
             <option value="president">President</option>
             <option value="admin">Admin</option>
+            <option value="student">student</option>
           </select>
+
+          {/* Show the admin secret key input only when the admin role is selected */}
+          {role ==="admin" &&(
+            <input
+            type='password'
+            placeholder="Admin Secret Key"
+            value={adminSecret}
+            onChange={(e)=> setAdminSecret(e.target.value)}required
+            />
+          )}
+
+
           <button type="submit" className="auth-button">Sign Up</button>
         </form>
         <p>
