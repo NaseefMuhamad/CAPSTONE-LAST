@@ -1,27 +1,22 @@
 // src/clubs/DataScienceClub.js
 import React, { useState, useEffect } from "react";
-
+import { BASE_URL } from '../config';
 import dataScienceBanner from '../assets/DataScienceBanner.jpg';
 import dataVisualization from '../assets/data-visualization.jpg'; // Section icon
 import dataEventImg from '../assets/DataEventImg.webp'; // Event image
 
 function DataScienceClub() {
+  const [data, setData] = useState({ tips: [], events: [] });
   const [tip, setTip] = useState("");
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [darkMode, setDarkMode] = useState(true);
 
-  const tips = [
-    "Clean your data before analysis.",
-    "Visualize trends with charts.",
-    "Use cross-validation for better models.",
-    "Document your data pipeline.",
-    "Explore feature engineering techniques.",
-  ];
-
-  const showTip = () => {
-    const randomTip = tips[Math.floor(Math.random() * tips.length)];
-    setTip(randomTip);
-  };
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/clubs/datascience`)
+      .then((response) => response.json())
+      .then((jsonData) => setData(jsonData))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -30,9 +25,16 @@ function DataScienceClub() {
     return () => clearInterval(interval);
   }, []);
 
+  const showTip = () => {
+    const randomTip = data.tips[Math.floor(Math.random() * data.tips.length)];
+    setTip(randomTip);
+  };
+
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
+
+
 
   return (
     <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>

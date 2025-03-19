@@ -1,42 +1,42 @@
 // src/clubs/CybersecurityClub.js
 import React, { useState, useEffect } from "react";
-
+import { BASE_URL } from '../config';
 import cybersecurityBanner from '../assets/CybersecurityBanner.jpg';
 import lockIcon from '../assets/LockIcon.jpg'; // Section icon
 import quizTrophy from '../assets/QuizTrophy.jpg'; // Quiz icon
 
 function CybersecurityClub() {
+  const [data, setData] = useState({ threats: [], tips: [], quiz: {}, leaderboard: [] });
   const [tip, setTip] = useState("");
   const [quizResult, setQuizResult] = useState("");
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [darkMode, setDarkMode] = useState(true);
   const [score, setScore] = useState(0);
-  const [leaderboard, setLeaderboard] = useState([]);
 
-  const threats = [
-    "Phishing Attacks",
-    "Malware & Ransomware",
-    "Denial of Service (DoS) Attacks",
-    "Man-in-the-Middle (MITM) Attacks",
-    "Weak Password Attacks",
-  ];
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/clubs/cybersecurity`)
+      .then((response) => response.json())
+      .then((jsonData) => {
+        const savedLeaderboard = JSON.parse(localStorage.getItem("cybersecurityLeaderboard")) || jsonData.leaderboard;
+        setData({ ...jsonData, leaderboard: savedLeaderboard });
+      })
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
-  const tips = [
-    "Use strong and unique passwords.",
-    "Enable two-factor authentication (2FA).",
-    "Do not click on suspicious links.",
-    "Keep your software and antivirus updated.",
-    "Use a VPN on public Wi-Fi.",
-    "Back up your data frequently.",
-  ];
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date().toLocaleTimeString());
+    }, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const showTip = () => {
-    const randomTip = tips[Math.floor(Math.random() * tips.length)];
+    const randomTip = data.tips[Math.floor(Math.random() * data.tips.length)];
     setTip(randomTip);
   };
 
   const checkAnswer = (answer) => {
-    if (answer === "c") {
+    if (answer === data.quiz.correctAnswer) {
       setQuizResult("✅ Correct! Always use a strong, unique password.");
       setScore((prevScore) => {
         const newScore = prevScore + 10;
@@ -49,30 +49,24 @@ function CybersecurityClub() {
   };
 
   const updateLeaderboard = (newScore) => {
-    const newLeaderboard = [
-      ...leaderboard,
-      { score: newScore, date: new Date().toLocaleString() },
-    ].sort((a, b) => b.score - a.score).slice(0, 5);
-    setLeaderboard(newLeaderboard);
-    localStorage.setItem("cybersecurityLeaderboard", JSON.stringify(newLeaderboard));
+    const newEntry = { score: newScore, date: new Date().toLocaleString() };
+    fetch(`${BASE_URL}/api/clubs/cybersecurity/leaderboard`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(newEntry)
+    })
+      .then((response) => response.json())
+      .then((updatedLeaderboard) => {
+        setData((prev) => ({ ...prev, leaderboard: updatedLeaderboard }));
+        localStorage.setItem("cybersecurityLeaderboard", JSON.stringify(updatedLeaderboard));
+      })
+      .catch((error) => console.error("Error updating leaderboard:", error));
   };
-
-  useEffect(() => {
-    const savedLeaderboard = JSON.parse(localStorage.getItem("cybersecurityLeaderboard")) || [];
-    setLeaderboard(savedLeaderboard);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(new Date().toLocaleTimeString());
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
   };
-
+  
   return (
     <div className={`club-page ${darkMode ? "dark-mode" : "light-mode"}`}>
       <header className="club-header">

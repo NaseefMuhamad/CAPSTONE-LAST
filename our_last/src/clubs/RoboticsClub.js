@@ -1,27 +1,22 @@
 // src/clubs/RoboticsClub.js
 import React, { useState, useEffect } from "react";
-
+import { BASE_URL } from '../config';
 import roboticsBanner from '../assets/RoboticsBanner.jpg';
 import gearIcon from '../assets/GearIcon.webp'; // Renamed to match case
 import robotEvent from '../assets/RobotEvent.jpeg'; // Renamed to match case
 
 function RoboticsClub() {
+  const [data, setData] = useState({ tips: [], events: [] });
   const [tip, setTip] = useState("");
   const [time, setTime] = useState(new Date().toLocaleTimeString());
   const [darkMode, setDarkMode] = useState(true);
 
-  const tips = [
-    "Calibrate your sensors regularly.",
-    "Test your code in small increments.",
-    "Use modular designs for easy repairs.",
-    "Keep spare parts handy during competitions.",
-    "Document your wiring and code.",
-  ];
-
-  const showTip = () => {
-    const randomTip = tips[Math.floor(Math.random() * tips.length)];
-    setTip(randomTip);
-  };
+  useEffect(() => {
+    fetch(`${BASE_URL}/api/clubs/robotics`)
+      .then((response) => response.json())
+      .then((jsonData) => setData(jsonData))
+      .catch((error) => console.error("Error fetching data:", error));
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,6 +24,11 @@ function RoboticsClub() {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const showTip = () => {
+    const randomTip = data.tips[Math.floor(Math.random() * data.tips.length)];
+    setTip(randomTip);
+  };
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
