@@ -93,6 +93,21 @@ body {
   background: #6b7280;
 }
 
+.president-dashboard-btn {
+  background: none;
+  border: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+  text-align: left; /* Align text to the left like other nav links */
+}
+
+.president-dashboard-btn:hover {
+  text-decoration: underline;
+}
+
 /* Welcome Page */
 .welcome-container {
   min-height: 80vh;

@@ -22,7 +22,14 @@ const Signup = () => {
       const data = await registerUser(name, email, password, role,role ==="admin"? adminSecret: undefined);
       login({ userId: data.userId, role: data.role, token: data.token });
       setMessage({ text: "Signup successful! Redirecting...", type: "success" });
+      // Redirecting based on role
+      if (data.role === "president") {
+        setTimeout(() => navigate("/PresDash"), 1000); // Redirect to President Dashboard
+      } else if (data.role === "admin") {
+        setTimeout(() => navigate("/admin"), 1000); // Redirect to Admin Dashboard
+      } else {
       setTimeout(() => navigate("/dashboard"), 1000);
+      }
     } catch (error) {
       const errorMsg = error.response?.data?.message || "Signup failed. Try again.";
       setMessage({ text: errorMsg, type: "error" });

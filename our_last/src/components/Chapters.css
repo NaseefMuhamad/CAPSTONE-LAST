@@ -1,0 +1,161 @@
+/* Full-page styling to match other pages */
+.chapters-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 40px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    margin-top:150px;
+}
+
+/* Title Styling */
+.chapters-container h1 {
+    font-size: 26px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.chapters-container h2 {
+    font-size: 22px;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+/* Chapters List Styling */
+.chapters-list {
+    list-style: none;
+    padding: 0;
+}
+
+.chapter-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    transition: background 0.3s;
+}
+
+.chapter-item:hover {
+    background: #e9ecef;
+}
+
+.chapter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.chapter-header strong {
+    font-size: 18px;
+    color: #333;
+}
+
+.chapter-description {
+    font-size: 16px;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.chapter-progress {
+    font-size: 14px;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.chapter-data {
+    margin-top: 10px;
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.chapter-data h3 {
+    font-size: 16px;
+    color: #333;
+    margin-top: 0;
+}
+
+.chapter-data pre {
+    font-size: 14px;
+    color: #444;
+    white-space: pre-wrap; /* Ensure JSON data wraps properly */
+    word-wrap: break-word;
+}
+
+/* Details Link Styling */
+.details-link {
+    display: inline-block;
+    margin-top: 10px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.details-link:hover {
+    text-decoration: underline;
+}
+
+/* Back Link Styling */
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #007bff;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .chapters-container {
+        width: 95%;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chapters-container {
+        padding: 25px;
+    }
+    .chapters-container h1 {
+        font-size: 22px;
+    }
+    .chapters-container h2 {
+        font-size: 18px;
+    }
+    .chapter-header strong {
+        font-size: 16px;
+    }
+    .chapter-description {
+        font-size: 14px;
+    }
+    .chapter-progress {
+        font-size: 12px;
+    }
+    .chapter-data h3 {
+        font-size: 14px;
+    }
+    .chapter-data pre {
+        font-size: 12px;
+    }
+    .chapters-link {
+        display: inline-block;
+        margin-top: 20px;
+        color: #007bff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+      
+    .chapters-link:hover {
+        text-decoration: underline;
+    }
+}

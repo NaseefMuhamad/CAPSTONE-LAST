@@ -58,12 +58,29 @@ html, body {
   border-color: #007bff;
 }
 
-/* Role Dropdown Styling */
+/* Role Dropdown Styling 
 .auth-box select {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border 0.3s ease-in-out;
   cursor: pointer;
   background-color: #fff;
   color: #333;
 }
+
+.auth-box select:focus {
+  border-color: #007bff;
+}
+
+/* Admin Secret Input (only shown for admin role) 
+.auth-box input[type="password"][placeholder="Admin Secret Key"] {
+  margin-top: 10px;
+} */
 
 /* Login & Signup Button */
 .auth-button {
@@ -109,22 +126,6 @@ html, body {
   padding: 10px;
   border-radius: 5px;
   margin-bottom: 15px;
-}
-
-/* Role Dropdown */
-.auth-box select {
-  width: 100%;
-  padding: 12px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px;
-  outline: none;
-  transition: border 0.3s ease-in-out;
-}
-
-.auth-box select:focus {
-  border-color: #007bff;
 }
 
 /* Make everything fit perfectly on all screen sizes */

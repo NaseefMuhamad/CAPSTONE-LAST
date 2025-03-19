@@ -147,6 +147,7 @@ const PresidentDashboard = () => {
         ) : (
           <p>No chapter progress data available.</p>
         )}
+        <Link to="/Chapters" className="chapters-link">View All Chapters</Link> <br/>
         <Link to="/dashboard">Back to Dashboard</Link>
       </section>
     </div>

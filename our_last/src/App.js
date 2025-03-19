@@ -9,6 +9,9 @@ import DataScienceClub from './clubs/DataScienceClub';
 import Signup from './components/signup';
 import Login from './components/login';
 import PresidentDashboard from './components/PresDash';
+import UserProfiles from './components/UserProfiles';
+import Chapters from './components/Chapters';
+import Admin from './components/Admin';
 import PrivateRoute from './components/PrivateRoute';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { logoutUser } from './api/api'; // Adjust path
@@ -38,6 +41,9 @@ function App() {
           <div className={`nav-links ${isNavOpen ? 'active' : ''}`}>
             <NavLink to="/" className="nav-link" activeClassName="active">Home</NavLink>
             <NavLink to="/dashboard" className="nav-link" activeClassName="active">Dashboard</NavLink>
+            {user && (
+              <NavLink to="/UserProfiles" className="nav-link" activeClassName="active">My Profile</NavLink>
+            )}
             {user ? (
               <button className="nav-link logout-btn" onClick={handleLogout}>
                 Logout
@@ -54,12 +60,29 @@ function App() {
           <Route path="/" element={<WelcomePage />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/PresDash" element={<PresidentDashboard />} />
+          <Route path="/UserProfiles" element={<UserProfiles />} />
+          <Route path="/Admin" element={<Admin />} />
           <Route
             path="/dashboard"
             element={
               <PrivateRoute>
                 <Dashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/PresDash"
+            element={
+              <PrivateRoute>
+                <PresidentDashboard />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="/chapters"
+            element={
+              <PrivateRoute>
+                <Chapters />
               </PrivateRoute>
             }
           />

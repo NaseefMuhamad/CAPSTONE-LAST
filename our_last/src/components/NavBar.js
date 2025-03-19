@@ -1,14 +1,32 @@
 // src/components/NavBar.js
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
-
+import {useAuth} from '../context/AuthContext';
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const {user} = useAuth();
+  const navigate = useNavigate();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
+
+  const handleLogout = () => {
+    logout();
+    navigate('/login');
+  };
+
+  const handlePresidentDashboard = () => {
+    navigate('/PresDash');
+    setIsOpen(false); // Navigate to the President Dashboard
+  };
+  
+  const handleAdminDashboard = () => {
+    navigate('/admin');
+    setIsOpen(false);
+  };
+
 
 
 
@@ -34,6 +52,14 @@ function NavBar() {
         <NavLink to="/signup" className="nav-link" activeClassName="active" onClick={() => setIsOpen(false)}>
           Signup
         </NavLink>
+        {user && user.role === 'president' && (
+          <button className="nav-link president-dashboard-btn" onClick={handlePresidentDashboard}>
+          President Dashboard
+        </button>
+        )}
+        {user && user.role === 'admin' && (
+          <button className="nav-link admindashboardbtn" onClick={handleAdminDashboard}>Admin Dashboard</button>
+        )}
       </div>
     </nav>
   );
